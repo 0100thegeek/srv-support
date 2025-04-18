@@ -7,17 +7,11 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      macvlan_net:
+      mymacvlannet:
         ipv4_address: 192.168.7.250
     restart: unless-stopped
 
 networks:
-  macvlan_net:
-    driver: macvlan
-    driver_opts:
-      parent: enp1s0f0
-    ipam:
-      config:
-        - subnet: 192.168.7.0/24
-          gateway: 192.168.7.254
-          ip_range: 192.168.7.240/28
+  mymacvlannet:
+    external: true
+
